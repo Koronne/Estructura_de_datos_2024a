@@ -12,5 +12,9 @@ x = int(input("Ingresa un numero: "))
 
 #Creo una lista para el acomodo de los numeros que deseamos anteriormente con el input
 t=[fib(i) for i in range(x)]
+#Esta lista es una compresion, ya que lo uso con el bucle for y ha pasado por el if, osea, por lo que entendi
+#Las listas compresivas tiene que pasar por un if para que sean agregados en el for, y toda expresion de lista debe encerrarse entre corchetes.
+#https://www.codigopiton.com/parentesis-corchetes-llaves-en-python/ de aqui me base mi respuesta
 #Aqui lo imprimo
+
 print(t)
