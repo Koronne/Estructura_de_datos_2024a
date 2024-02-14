@@ -1,4 +1,3 @@
-''' Implementación de lista ligada '''
 from Nodo4 import Node
 
 class LinkedList:
@@ -26,31 +25,51 @@ class LinkedList:
         self.tail = self.tail.next
         self.counter += 1
     
-    
     def headRemove(self) -> None:
         ''' Remover el elemento al inicio de la lista '''
         if self.head is None:
-            raise ValueError('La lista esta vacia')
+            raise ValueError('La lista está vacía')
         
         self.head = self.head.next
 
         if self.head is None:
             self.tail = None
 
-        self.counter -=1
+        self.counter -= 1
+
+    def tailRemove(self) -> None:
+        ''' Remover el elemento al final de la lista '''
+        if self.head is None:
+            raise ValueError('La lista está vacía')
+
+        if self.head == self.tail:
+            # Si solo hay un elemento en la lista
+            self.head = None
+            self.tail = None
+        else:
+            # Si hay más de un elemento, encontrar el penúltimo nodo
+            current = self.head
+            while current.next != self.tail:
+                current = current.next
+
+            # Actualizar el puntero 'tail'
+            current.next = None
+            self.tail = current
+
+        self.counter -= 1
 
     def traverse(self) -> None:
         ''' Recorrer la lista (imprimir) '''
-
         if not self.head:
-            print('La lista esta vacia')
+            print('La lista está vacía')
             return
         
         nuevo_nodo = self.head
         cnt = 1
         while nuevo_nodo is not None:
-            print(f'Nodo #{cnt} -> {nuevo_nodo.next}')
+            print(f'Nodo #{cnt} -> {nuevo_nodo.val}')
             nuevo_nodo = nuevo_nodo.next
+            cnt += 1
 
 if __name__ == '__main__':
     lista_ligada = LinkedList()
@@ -61,22 +80,32 @@ if __name__ == '__main__':
     # Llenado de la lista
     for i in lista_tradicional:
         lista_ligada.headInsert(i)
-    ...
 
     # Impresión de la lista
-    ...
+    print("Lista después de la inserción inicial:")
+    lista_ligada.traverse()
 
     # Adición de un nuevo elemento al final
     n = False
-    ...
+    lista_ligada.tailInsert(n)
+    print("\nDespués de añadir un nuevo elemento al final:")
+    lista_ligada.traverse()
 
     # Adición de un nuevo elemento al inicio
     n = 'Estructuras'
-    ...
+    lista_ligada.headInsert(n)
+    print("\nDespués de añadir un nuevo elemento al inicio:")
+    lista_ligada.traverse()
 
     # Eliminación del primer elemento e impresión
-    ...
+    lista_ligada.headRemove()
+    print("\nDespués de eliminar el primer elemento:")
+    lista_ligada.traverse()
 
+    # Eliminación del último elemento
+    lista_ligada.tailRemove()
+    print("\nDespués de eliminar el último elemento:")
+    lista_ligada.traverse()
     # Eliminación del último elemento (o explica por qué no es posible en un comentario multilínea)
 
     ''' Manejo de errores
