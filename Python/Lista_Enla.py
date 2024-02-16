@@ -37,26 +37,6 @@ class LinkedList:
 
         self.counter -= 1
 
-    def tailRemove(self) -> None:
-        ''' Remover el elemento al final de la lista '''
-        if self.head is None:
-            raise ValueError('La lista está vacía')
-
-        if self.head == self.tail:
-            # Si solo hay un elemento en la lista
-            self.head = None
-            self.tail = None
-        else:
-            # Si hay más de un elemento, encontrar el penúltimo nodo
-            current = self.head
-            while current.next != self.tail:
-                current = current.next
-
-            # Actualizar el puntero 'tail'
-            current.next = None
-            self.tail = current
-
-        self.counter -= 1
 
     def traverse(self) -> None:
         ''' Recorrer la lista (imprimir) '''
@@ -103,7 +83,6 @@ if __name__ == '__main__':
     lista_ligada.traverse()
 
     # Eliminación del último elemento
-    lista_ligada.tailRemove()
     print("\nDespués de eliminar el último elemento:")
     lista_ligada.traverse()
     # Eliminación del último elemento (o explica por qué no es posible en un comentario multilínea)
