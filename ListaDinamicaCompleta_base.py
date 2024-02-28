@@ -11,10 +11,10 @@ import ctypes
 '''
 
 class ListaDinamica:
-    def __init__(self) -> None:
+    def __init__(self, capacidad) -> None:
         ''' Inicializar un arreglo vacío '''
         self.__n = 0                          # Elementos actuales
-        self.__c = 1                          # Capacidad inicial por defecto
+        self.__c = capacidad                          # Capacidad inicial por defecto
         self.__A = self.__init_arr(self.__c)  # Arreglo contenedor
     
     def __Check_resize(decrease_func):
