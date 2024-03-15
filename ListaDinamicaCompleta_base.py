@@ -20,9 +20,12 @@ class ListaDinamica:
     def __Check_resize(decrease_func):
         ''' Decorador para revisar relación elementos/capacidad '''
         def inner(self, *args):
+            if not(len(self)):
+                raise IndexError('La lista está vacía')
+
             val = decrease_func(self, *args)
 
-            if self.__n == self.__c // 4:
+            if self.__n and self.__n == self.__c // 4:
                 self.__resize(self.__c // 2)
             
             return val
@@ -102,7 +105,7 @@ class ListaDinamica:
         ''' Añade un elemento al final de la lista '''
         if self.__n == self.__c:
             self.__resize(2 * self.__c)
-        
+
         self.__A[self.__n] = obj
         self.__n += 1
     
